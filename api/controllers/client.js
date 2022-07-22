@@ -2,10 +2,7 @@ const { Client } = require("../models");
 const { validatorRegisterClient } = require("../validations/client");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
-const registerClient = async (req, res) => {
-    //const { errors, isValid } = await validatorRegisterClient(req.body);
-    //if (!isValid) return res.status(400).json({ errors });
-  
+const registerClient = async (req, res) => {  
     const { email, password, name, surname, dir } = req.body;
   
     let emailTrim = email.trim().toLowerCase();

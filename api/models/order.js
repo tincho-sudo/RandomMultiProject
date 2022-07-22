@@ -11,10 +11,32 @@ const Orders = new Schema({
     type: Schema.Types.ObjectId,
     ref: "paints",
   }],
+  status: {
+    tpye: Number,
+    default: 0,
+  },
+  dateOfDelivery: {
+    type: Date,
+    default: addDays(Date.Now,getRandomInt(10)),
+  },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
+
+function getRandomInt(max) {
+  if(max>0)
+  return Math.floor(Math.random() * max);
+  else
+  return Math.floor(Math.random() * max) + 1;
+}
+
+
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
 
 module.exports = mongoose.model("orders", Orders);

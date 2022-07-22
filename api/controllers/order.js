@@ -49,9 +49,35 @@ const deleteOrder= async (req, res) => {
   res.status(200).json({ deletedOrder });
 }
 
+//(postman, get x-www-form)
+const pendingOrders = async (req, res) => {
+    
+  const orders = await Order.find({});
+  return res.status(200).json(orders);
+};
+
+//(postman, get x-www-form)
+const billedOrders = async (req, res) => {
+    
+  const orders = await Order.find({});
+  return res.status(200).json(orders);
+};
+
+
+//(postman, get x-www-form)
+const canceledOrders = async (req, res) => {
+    
+  const orders = await Order.find({});
+  return res.status(200).json(orders);
+};
+
+
 module.exports = {
   registerOrder,
   editOrder,
   getOrders,
   deleteOrder,
+  pendingOrders,
+  billedOrders,
+  canceledOrders,
 };
