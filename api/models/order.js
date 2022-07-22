@@ -7,17 +7,20 @@ const Orders = new Schema({
     type: Schema.Types.ObjectId,
     ref: "clients",
   },
-  paint: [{
-    type: Schema.Types.ObjectId,
-    ref: "paints",
-  }],
+  paint: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "paints",
+    },
+  ],
   status: {
     tpye: Number,
     default: 0,
   },
+  // Envio de la orden en X (entre 0 y 10 dias desde hoy (es indiferente) ) dias
   dateOfDelivery: {
     type: Date,
-    default: addDays(Date.Now,getRandomInt(10)),
+    default: addDays(Date.Now, getRandomInt(10)),
   },
   createdAt: {
     type: Date,
@@ -26,12 +29,9 @@ const Orders = new Schema({
 });
 
 function getRandomInt(max) {
-  if(max>0)
-  return Math.floor(Math.random() * max);
-  else
-  return Math.floor(Math.random() * max) + 1;
+  if (max > 0) return Math.floor(Math.random() * max);
+  else return Math.floor(Math.random() * max) + 1;
 }
-
 
 function addDays(date, days) {
   var result = new Date(date);

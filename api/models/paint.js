@@ -10,7 +10,7 @@ const Paint = new Schema({
   // Nuevo envio de la pintura en X (entre 0 y 10 dias desde hoy) dias
   nextShipping: {
     type: Date,
-    default: addDays(Date.Now,getRandomInt(10)),
+    default: addDays(Date.Now, getRandomInt(10)),
   },
   createdAt: {
     type: Date,
@@ -19,12 +19,9 @@ const Paint = new Schema({
 });
 
 function getRandomInt(max) {
-  if(max>0)
-  return Math.floor(Math.random() * max);
-  else
-  return Math.floor(Math.random() * max) + 1;
+  if (max > 0) return Math.floor(Math.random() * max);
+  else return Math.floor(Math.random() * max) + 1;
 }
-
 
 function addDays(date, days) {
   var result = new Date(date);

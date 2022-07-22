@@ -20,6 +20,4 @@ router.get("/pendingorders", pendingOrders);
 router.get("/billedorders", billedOrders);
 router.get("/canceledorders", canceledOrders);
 
-
-
 module.exports = router;

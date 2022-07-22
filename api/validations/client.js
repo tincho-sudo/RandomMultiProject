@@ -58,5 +58,4 @@ const validatorRegisterClient = async (data) => {
   };
 };
 
-
 module.exports = { validatorRegisterClient };
