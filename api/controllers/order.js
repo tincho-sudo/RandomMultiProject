@@ -1,15 +1,16 @@
 const { Order } = require("../models");
+const moment = require("moment");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerOrder = async (req, res) => {
   try {
-    const { name, quantity } = req.body;
+    const { paint, client, statusZ, dateOfDelivery } = req.body;
 
     const newOrder = new Order({
       paint: req.paint._id,
       client: req.client._id,
-      name,
-      quantity,
+      statusZ: req.order.status,
+      dateOfDelivery: req.order.dateOfDelivery,
     });
     await newOrder.save();
     res.status(200).json({ newOrder });
@@ -18,13 +19,30 @@ const registerOrder = async (req, res) => {
   }
 };
 
+// agrega 10 datos a la tabla
+//populate();
+async function populate() {
+  let i;
+  const newOrder = new Order({
+    paint: Order.find({}).populate("paint").exec(),
+    client: Order.find({}).populate("client").exec(),
+    dateOfDelivery: moment()
+      .locale("es")
+      .add(Math.floor(Math.random() * i), "d")
+      .format("MMM DD, YYYY HH:MM"),
+    statusZ: Math.floor(Math.random() * i),
+  });
+  await newOrder.save();
+}
+
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editOrder = async (req, res) => {
   const { id_order } = req.body;
   const order = await Order.findById(id_order);
-  if (res.name) order.name = res.name;
-  if (res.color) order.color = res.color;
-  if (res.quantity) order.quantity = res.quantity;
+  if (res.paint) order.paint = res.paint;
+  if (res.status) order.status = res.status;
+  if (res.dateOfDelivery) order.dateOfDelivery = res.dateOfDelivery;
+  if (res.client) order.client = res.client;
 };
 
 //(postman, get x-www-form)

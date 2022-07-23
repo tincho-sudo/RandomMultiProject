@@ -25,21 +25,18 @@ const registerClient = async (req, res) => {
 // agrega 10 datos a la tabla
 populate();
 async function populate() {
- 
   await Client.deleteMany({});
 
-  for(let i=0; i<10;i++){
-
+  for (let i = 0; i < 10; i++) {
     const newClient = new Client({
-      email: i + 'a@hotmail.com',
-      password:  i + 'passwd',
-      name:  i + 'nombre',
-      surname:  i + 'apellido',
-      dir: i + 'dir',
+      email: i + "a@hotmail.com",
+      password: i + "passwd",
+      name: i + "nombre",
+      surname: i + "apellido",
+      dir: i + "dir",
     });
-     
+
     await newClient.save();
- 
   }
 }
 
@@ -59,7 +56,6 @@ const getClients = async (_, res) => {
   const clients = await Client.find({});
   return res.status(200).json(clients);
 };
-
 
 module.exports = {
   registerClient,

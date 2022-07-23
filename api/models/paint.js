@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 const moment = require("moment");
-
-
-
-
+const Schema = mongoose.Schema;
 
 const Paint = new Schema({
   name: String,
@@ -15,7 +11,12 @@ const Paint = new Schema({
   // Nuevo envio de la pintura en X (entre 0 y 10 dias desde hoy) dias
   nextShipping: {
     type: Date,
-    default: new Date(moment().locale("es").add(getRandomInt(10), 'd').format("MMM DD, YYYY HH:MM")),
+    default: new Date(
+      moment()
+        .locale("es")
+        .add(getRandomInt(10), "d")
+        .format("MMM DD, YYYY HH:MM")
+    ),
   },
   createdAt: {
     type: Date,
@@ -26,12 +27,6 @@ const Paint = new Schema({
 function getRandomInt(max) {
   if (max > 0) return Math.floor(Math.random() * max);
   else return Math.floor(Math.random() * max) + 1;
-}
-
-function addDays(date, days) {
-  let result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
 }
 
 module.exports = mongoose.model("paints", Paint);

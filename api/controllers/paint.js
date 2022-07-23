@@ -1,4 +1,5 @@
 const { Paint } = require("../models");
+const moment = require("moment");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerPaint = async (req, res) => {
@@ -16,26 +17,33 @@ const registerPaint = async (req, res) => {
 // agrega 10 datos a la tabla
 populate();
 async function populate() {
- 
-  let date = Date.now;
-  console.log(date);
-  await Paint.deleteMany({});
-  for(let i=0; i<10;i++){
+  try {
+    await Paint.deleteMany({});
 
-    const newPaint = new Paint({
-      name: i + 'nombre',
-      color:  i + 'color',
-      price:  i,
-      stock:  i,
-      sku: i + 'sku',
-      nxtShipping: date
-    });
-    console.log(newPaint);
-     
-    await newPaint.save();
- 
+    for (let i = 0; i < 10; i++) {
+      const newPaint = new Paint({
+        name: i + "nombre",
+        color: i + "color",
+        price: i,
+        stock: i,
+        sku: i + "sku",
+        nxtShipping: moment()
+          .locale("es")
+          .add(Math.floor(Math.random() * i), "d")
+          .format("MMM DD, YYYY HH:MM"),
+      });
+      await newPaint.save();
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
+
+async function getRandomInt(max) {
+  if (max > 0) return Math.floor(Math.random() * max);
+  else return Math.floor(Math.random() * max) + 1;
+}
+
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editPaint = async (req, res) => {
   const { name, color, price, stock, sku } = req.body;
