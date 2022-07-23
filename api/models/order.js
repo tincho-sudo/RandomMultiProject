@@ -1,23 +1,23 @@
 const mongoose = require("mongoose");
 const moment = require("moment");
-const paint = require("./paint");
+const paintSchema = require("./paint");
+const clientSchema = require("./client");
 const Schema = mongoose.Schema;
 
-console.log(getRandomInt(10));
 const Orders = new Schema({
   client: {
-    type: Schema.Types.ObjectId,
+    type: clientSchema.schema,
     ref: "clients",
     required: true,
   },
   paint: [
     {
-      type: Schema.Types.ObjectId,
+      type: paintSchema.schema,
       ref: "paints",
       required: true,
     },
   ],
-  status: {
+  statusZ: {
     tpye: Number,
     default: 0,
   },

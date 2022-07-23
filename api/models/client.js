@@ -3,7 +3,10 @@ const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 
 const Client = new Schema({
-  email: String,
+  email: {
+    type: String,
+    unique: true,
+  },
   password: String,
   name: String,
   surname: String,
@@ -22,4 +25,4 @@ Client.pre("save", async function (next) {
   next();
 });
 
-module.exports = mongoose.model("Client", Client);
+module.exports = mongoose.model("clients", Client);

@@ -1,4 +1,4 @@
-const { Order } = require("../models");
+const { Order, Client, Paint } = require("../models");
 const moment = require("moment");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
@@ -7,8 +7,8 @@ const registerOrder = async (req, res) => {
     const { paint, client, statusZ, dateOfDelivery } = req.body;
 
     const newOrder = new Order({
-      paint: req.paint._id,
-      client: req.client._id,
+      paint: req.Paint._id,
+      client: req.Client._id,
       statusZ: req.order.status,
       dateOfDelivery: req.order.dateOfDelivery,
     });
@@ -20,12 +20,19 @@ const registerOrder = async (req, res) => {
 };
 
 // agrega 10 datos a la tabla
-//populate();
+try {
+  populate();
+} catch (error) {
+  console.log(error);
+}
 async function populate() {
+  await Order.deleteMany({});
+  const clientList = await Client.find({});
+  const paintList = await Paint.find({});
   let i;
   const newOrder = new Order({
-    paint: Order.find({}).populate("paint").exec(),
-    client: Order.find({}).populate("client").exec(),
+    client: await Client.findById({ _id: clientList[0]._id }),
+    paint: await Paint.findById({ _id: paintList[0]._id }),
     dateOfDelivery: moment()
       .locale("es")
       .add(Math.floor(Math.random() * i), "d")
@@ -39,10 +46,10 @@ async function populate() {
 const editOrder = async (req, res) => {
   const { id_order } = req.body;
   const order = await Order.findById(id_order);
-  if (res.paint) order.paint = res.paint;
+  if (res.client._id) order.client._id = res.client._id;
+  if (res.paint._id) order.paint._id = res.paint_id;
   if (res.status) order.status = res.status;
   if (res.dateOfDelivery) order.dateOfDelivery = res.dateOfDelivery;
-  if (res.client) order.client = res.client;
 };
 
 //(postman, get x-www-form)
@@ -55,7 +62,6 @@ const deleteOrder = async (req, res) => {
   const { id_order } = req.params;
   const order = await Orders.findOne({
     order: id_order,
-    client: req.user._id,
   });
   const deletedOrder = await order.delete();
   res.status(200).json({ deletedOrder });

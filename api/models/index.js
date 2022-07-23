@@ -1,4 +1,4 @@
-const Client = require("./Client");
+const Client = require("./client");
 const Paint = require("./paint");
 const Order = require("./order");
 

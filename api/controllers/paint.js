@@ -15,7 +15,7 @@ const registerPaint = async (req, res) => {
 };
 
 // agrega 10 datos a la tabla
-populate();
+//populate();
 async function populate() {
   try {
     await Paint.deleteMany({});
@@ -27,10 +27,7 @@ async function populate() {
         price: i,
         stock: i,
         sku: i + "sku",
-        nxtShipping: moment()
-          .locale("es")
-          .add(Math.floor(Math.random() * i), "d")
-          .format("MMM DD, YYYY HH:MM"),
+        nxtShipping: moment().locale("es"),
       });
       await newPaint.save();
     }
