@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const moment = require("moment");
+
+
+
+
 
 const Paint = new Schema({
   name: String,
@@ -10,7 +15,7 @@ const Paint = new Schema({
   // Nuevo envio de la pintura en X (entre 0 y 10 dias desde hoy) dias
   nextShipping: {
     type: Date,
-    default: addDays(Date.Now, getRandomInt(10)),
+    default: new Date(moment().locale("es").add(getRandomInt(10), 'd').format("MMM DD, YYYY HH:MM")),
   },
   createdAt: {
     type: Date,
@@ -24,7 +29,7 @@ function getRandomInt(max) {
 }
 
 function addDays(date, days) {
-  var result = new Date(date);
+  let result = new Date(date);
   result.setDate(result.getDate() + days);
   return result;
 }

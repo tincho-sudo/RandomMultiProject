@@ -6,7 +6,7 @@ const registerOrder = async (req, res) => {
     const { name, quantity } = req.body;
 
     const newOrder = new Order({
-      paint: id_paint,
+      paint: req.paint._id,
       client: req.client._id,
       name,
       quantity,

@@ -6,11 +6,13 @@ const Orders = new Schema({
   client: {
     type: Schema.Types.ObjectId,
     ref: "clients",
+    required: true
   },
   paint: [
     {
       type: Schema.Types.ObjectId,
       ref: "paints",
+      required: true
     },
   ],
   status: {
@@ -19,7 +21,7 @@ const Orders = new Schema({
   },
   // Envio de la orden en X (entre 0 y 10 dias desde hoy (es indiferente) ) dias
   dateOfDelivery: {
-    type: Date,
+    type: String,
     default: addDays(Date.Now, getRandomInt(10)),
   },
   createdAt: {
