@@ -21,6 +21,11 @@ const Orders = new Schema({
     tpye: Number,
     default: 0,
   },
+  toPay: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
   // Envio de la orden en X (entre 0 y 10 dias desde hoy (es indiferente) ) dias
   dateOfDelivery: {
     type: String,

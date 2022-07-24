@@ -9,7 +9,7 @@ const registerOrder = async (req, res) => {
     const newOrder = new Order({
       paint: req.Paint._id,
       client: req.Client._id,
-      statusZ: req.order.status,
+      statusZ: req.Order.status,
       dateOfDelivery: req.order.dateOfDelivery,
     });
     await newOrder.save();
@@ -29,15 +29,26 @@ async function populate() {
   await Order.deleteMany({});
   const clientList = await Client.find({});
   const paintList = await Paint.find({});
-  let i;
+  //await console.log('Count: '+ Paint.countDocuments({_id: "62dc32a939f734eb6260c2c4"}));
+  let toPayVar = 0;
+  let i = 0;
+  //ahora mismo suma el precio de todas las pinturas existentes y le asigna el total al cliente 0 para testing,
+  //despues va a haber que recorrer todas las pinturas de la orden,
+  //sumar los precios individuales y editarle a la orden la variable toPay que ya tiene en la db
+  //opcion B, por front sacan el valor de cada pintura, lo suman en una temporal y lo manda en el req
+  for (i = 0; i < 10; i++) {
+    toPayVar += paintList[i].price;
+  }
+  console.log("Pay: " + toPayVar);
   const newOrder = new Order({
     client: await Client.findById({ _id: clientList[0]._id }),
     paint: await Paint.findById({ _id: paintList[0]._id }),
+    toPay: await toPayVar,
     dateOfDelivery: moment()
       .locale("es")
-      .add(Math.floor(Math.random() * i), "d")
+      .add(Math.floor(Math.random() * 2), "d")
       .format("MMM DD, YYYY HH:MM"),
-    statusZ: Math.floor(Math.random() * i),
+    statusZ: Math.floor(Math.random() * 2),
   });
   await newOrder.save();
 }
@@ -48,7 +59,8 @@ const editOrder = async (req, res) => {
   const order = await Order.findById(id_order);
   if (res.client._id) order.client._id = res.client._id;
   if (res.paint._id) order.paint._id = res.paint_id;
-  if (res.status) order.status = res.status;
+  if (res.status) order.statusZ = res.status;
+  if (res.toPay) order.toPay = res.toPay;
   if (res.dateOfDelivery) order.dateOfDelivery = res.dateOfDelivery;
 };
 
