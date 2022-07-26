@@ -4,12 +4,13 @@ const moment = require("moment");
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerOrder = async (req, res) => {
   try {
-    const { paint, client, statusZ, dateOfDelivery } = req.body;
+    const { paint, client, statusZ, toPay, dateOfDelivery } = req.body;
 
     const newOrder = new Order({
       paint: req.Paint._id,
       client: req.Client._id,
       statusZ: req.Order.status,
+      toPay: req.Order.toPay, //esta es la Opcion B de la @Linea39
       dateOfDelivery: req.order.dateOfDelivery,
     });
     await newOrder.save();
