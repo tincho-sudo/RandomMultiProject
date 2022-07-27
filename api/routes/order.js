@@ -14,7 +14,7 @@ const {
 router.post("/neworder", registerOrder);
 router.put("/modifyorder", editOrder);
 router.get("/orders", getOrders);
-router.get("/deleteorder", deleteOrder);
+router.delete("/deleteorder", deleteOrder);
 
 router.get("/pendingorders", pendingOrders);
 router.get("/billedorders", billedOrders);

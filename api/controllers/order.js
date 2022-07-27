@@ -59,6 +59,8 @@ const editOrder = async (req, res) => {
   if (statusZ) order.statusZ = statusZ;
   if (toPay) order.toPay = toPay;
   if (dateOfDelivery) order.dateOfDelivery = dateOfDelivery;
+  await order.save();
+  return res.status(200).json(order);
 };
 
 //(postman, get x-www-form)
@@ -68,29 +70,28 @@ const getOrders = async (req, res) => {
 };
 
 const deleteOrder = async (req, res) => {
-  const { id_order } = req.params;
-  const order = await Orders.findOne({
-    order: id_order,
-  });
+  console.log("hola");
+  const { orderId } = req.body;
+  const order = await Order.findById(orderId);
   const deletedOrder = await order.delete();
-  res.status(200).json({ deletedOrder });
+  return res.status(200).json(deletedOrder);
 };
 
 //(postman, get x-www-form)
 const pendingOrders = async (req, res) => {
-  const orders = await Order.find({ status: { $eq: 1 }.getFilter() });
+  const orders = await Order.find({ statusZ: { $eq: 1 } });
   return res.status(200).json(orders);
 };
 
 //(postman, get x-www-form)
 const billedOrders = async (req, res) => {
-  const orders = await Order.find({ status: { $eq: 2 }.getFilter() });
+  const orders = await Order.find({ statusZ: { $eq: 2 } });
   return res.status(200).json(orders);
 };
 
 //(postman, get x-www-form)
 const canceledOrders = async (req, res) => {
-  const orders = await Order.find({ status: { $eq: 3 }.getFilter() });
+  const orders = await Order.find({ statusZ: { $eq: 3 } });
   return res.status(200).json(orders);
 };
 

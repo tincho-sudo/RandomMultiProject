@@ -18,8 +18,9 @@ const Orders = new Schema({
     },
   ],
   statusZ: {
-    tpye: Number,
+    type: Number,
     default: 0,
+    required: true,
   },
   toPay: {
     type: Number,
