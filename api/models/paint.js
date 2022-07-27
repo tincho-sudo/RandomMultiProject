@@ -10,13 +10,8 @@ const Paint = new Schema({
   sku: String,
   // Nuevo envio de la pintura en X (entre 0 y 10 dias desde hoy) dias
   nextShipping: {
-    type: Date,
-    default: new Date(
-      moment()
-        .locale("es")
-        .add(getRandomInt(10), "d")
-        .format("MMM DD, YYYY HH:MM")
-    ),
+    type: String,
+    required: true,
   },
   createdAt: {
     type: Date,

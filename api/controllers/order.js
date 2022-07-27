@@ -38,6 +38,7 @@ async function populate() {
   //sumar los precios individuales y editarle a la orden la variable toPay que ya tiene en la db
   //opcion B, por front sacan el valor de cada pintura, lo suman en una temporal y lo manda en el req
   for (i = 0; i < 10; i++) {
+    console.log(paintList[i].price);
     toPayVar += paintList[i].price;
   }
   console.log("Pay: " + toPayVar);

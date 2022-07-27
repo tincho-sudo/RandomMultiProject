@@ -27,7 +27,7 @@ async function populate() {
         price: i,
         stock: i,
         sku: i + "sku",
-        nxtShipping: moment().locale("es"),
+        nxtShipping: "aaa",
       });
       await newPaint.save();
     }

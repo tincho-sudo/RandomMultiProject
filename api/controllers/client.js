@@ -4,6 +4,7 @@ const { validatorRegisterClient } = require("../validations/client");
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerClient = async (req, res) => {
   const { email, password, name, surname, dir } = req.body;
+  const {id} = req.params;
 
   let emailTrim = email.trim().toLowerCase();
 
