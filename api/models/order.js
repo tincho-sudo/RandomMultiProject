@@ -29,12 +29,7 @@ const Orders = new Schema({
   // Envio de la orden en X (entre 0 y 10 dias desde hoy (es indiferente) ) dias
   dateOfDelivery: {
     type: String,
-    default: new Date(
-      moment()
-        .locale("es")
-        .add(getRandomInt(10), "d")
-        .format("MMM DD, YYYY HH:MM")
-    ),
+    required: true,
   },
   createdAt: {
     type: Date,

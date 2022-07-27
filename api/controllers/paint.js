@@ -3,10 +3,10 @@ const moment = require("moment");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerPaint = async (req, res) => {
-  const { name, color, price, stock, sku, nxtShipping } = req.body;
+  const { name, color, price, stock, sku, nextShipping } = req.body;
 
   try {
-    const newPaint = new Paint({ name, color, price, stock, sku, nxtShipping });
+    const newPaint = new Paint({ name, color, price, stock, sku, nextShipping });
     await newPaint.save();
     res.status(200).json({ newPaint });
   } catch (err) {
@@ -27,7 +27,7 @@ async function populate() {
         price: i,
         stock: i,
         sku: i + "sku",
-        nxtShipping: "aaa",
+        nextShipping: "aaa",
       });
       await newPaint.save();
     }

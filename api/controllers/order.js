@@ -7,11 +7,11 @@ const registerOrder = async (req, res) => {
     const { paint, client, statusZ, toPay, dateOfDelivery } = req.body;
 
     const newOrder = new Order({
-      paint: req.Paint._id,
-      client: req.Client._id,
-      statusZ: req.Order.status,
-      toPay: req.Order.toPay, //esta es la Opcion B de la @Linea39
-      dateOfDelivery: req.order.dateOfDelivery,
+      paint: paint,
+      client: client,
+      statusZ: statusZ,
+      toPay: toPay, //esta es la Opcion B de la @Linea39
+      dateOfDelivery: dateOfDelivery,
     });
     await newOrder.save();
     res.status(200).json({ newOrder });
@@ -46,10 +46,7 @@ async function populate() {
     client: await Client.findById({ _id: clientList[0]._id }),
     paint: await Paint.findById({ _id: paintList[0]._id }),
     toPay: await toPayVar,
-    dateOfDelivery: moment()
-      .locale("es")
-      .add(Math.floor(Math.random() * 2), "d")
-      .format("MMM DD, YYYY HH:MM"),
+    dateOfDelivery: "aaa",
     statusZ: Math.floor(Math.random() * 2),
   });
   await newOrder.save();
@@ -57,13 +54,11 @@ async function populate() {
 
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editOrder = async (req, res) => {
-  const { id_order } = req.body;
-  const order = await Order.findById(id_order);
-  if (res.client._id) order.client._id = res.client._id;
-  if (res.paint._id) order.paint._id = res.paint_id;
-  if (res.status) order.statusZ = res.status;
-  if (res.toPay) order.toPay = res.toPay;
-  if (res.dateOfDelivery) order.dateOfDelivery = res.dateOfDelivery;
+  const { orderId , statusZ, toPay, dateOfDelivery} = req.body;
+  const order = await Order.findById(orderId);
+  if (statusZ) order.statusZ = statusZ;
+  if (toPay) order.toPay = toPay;
+  if (dateOfDelivery) order.dateOfDelivery = dateOfDelivery;
 };
 
 //(postman, get x-www-form)
