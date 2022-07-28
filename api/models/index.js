@@ -7,4 +7,5 @@ module.exports = {
   Client,
   Paint,
   Order,
+  Org,
 };
