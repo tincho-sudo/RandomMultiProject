@@ -14,9 +14,9 @@ const registerOrder = async (req, res) => {
       dateOfDelivery: dateOfDelivery,
     });
     await newOrder.save();
-    res.status(200).json({ newOrder });
+   return res.status(200).json({ newOrder });
   } catch (err) {
-    res.status(500).json({ err });
+   return res.status(500).json({ err });
   }
 };
 
@@ -64,34 +64,66 @@ const editOrder = async (req, res) => {
 };
 
 //(postman, get x-www-form)
-const getOrders = async (req, res) => {
+const getOrders = async (_, res) => {
   const orders = await Order.find({});
   return res.status(200).json(orders);
 };
 
+//pasar id de la orden por params
+const getOrder = async (req, res) => {
+  const order = await Order.findById(req.params._id);
+  return res.status(200).json(order);
+};
+
+//pasar id de la orden por params
 const deleteOrder = async (req, res) => {
-  console.log("hola");
-  const { orderId } = req.body;
-  const order = await Order.findById(orderId);
+  const order = await Order.findById(req.params._id);
   const deletedOrder = await order.delete();
   return res.status(200).json(deletedOrder);
 };
 
-//(postman, get x-www-form)
+//(postman, get x-www-form) - para buscar todos los de 1, pasar id por params
 const pendingOrders = async (req, res) => {
-  const orders = await Order.find({ statusZ: { $eq: 1 } });
+  let orders;
+  try {
+    if(req){
+      orders = await Order.find({clientId: { $eq: req.params._id }, statusZ: { $eq: 1 } });
+    }else{
+      orders = await Order.find({ statusZ: { $eq: 1 } });
+    }
+  } catch (err) {
+      return res.status(500).json({ err });
+  }
   return res.status(200).json(orders);
 };
 
-//(postman, get x-www-form)
+//(postman, get x-www-form)   - para buscar todos los de 1, pasar id por params
 const billedOrders = async (req, res) => {
-  const orders = await Order.find({ statusZ: { $eq: 2 } });
+  let orders;
+  try {
+    if(req){
+      orders = await Order.find({clientId: { $eq: req.params._id }, statusZ: { $eq: 2 } });
+    }else{
+      orders = await Order.find({ statusZ: { $eq: 2 } });
+    }
+  } catch (err) {
+      return res.status(500).json({ err });
+  }
   return res.status(200).json(orders);
 };
 
-//(postman, get x-www-form)
+//(postman, get x-www-form)  - para buscar todos los de 1, pasar id por params
 const canceledOrders = async (req, res) => {
-  const orders = await Order.find({ statusZ: { $eq: 3 } });
+  let orders;
+  try {
+    if(req){
+      orders = await Order.find({clientId: { $eq: req.params._id }, statusZ: { $eq: 3 } });
+    }else{
+      orders = await Order.find({ statusZ: { $eq: 3 } });
+    }
+  } catch (err) {
+      return res.status(500).json({ err });
+  }
   return res.status(200).json(orders);
 };
 

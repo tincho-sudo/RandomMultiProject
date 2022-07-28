@@ -5,12 +5,12 @@ const {
   registerClient,
   editClient,
   getClients,
-  //getClient,
+  getClient,
 } = require("../controllers/client");
 
 router.post("/newclient", registerClient);
 router.put("/modifyclient", editClient);
 router.get("/clients", getClients);
-//router.get("/clients/:id", getClient);
+router.get("/client/:id", getClient);
 
 module.exports = router;

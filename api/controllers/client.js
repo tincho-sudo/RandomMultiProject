@@ -50,7 +50,7 @@ const editClient = async (req, res) => {
   if (dir) client.dir = dir;
   if (!name && !surname && !dir) return res.status(500).json({ err });
   const editedclient = await client.save();
-  res.status(200).json({ editedclient });
+  return res.status(200).json({ editedclient });
 };
 
 const getClients = async (_, res) => {
@@ -58,8 +58,15 @@ const getClients = async (_, res) => {
   return res.status(200).json(clients);
 };
 
+const getClient = async (req, res) => {
+  const client = await Client.findById(req.params._id);
+  if (!req.params._id ) return res.status(500).json({ err });
+  return res.status(200).json({ client });
+};
+
 module.exports = {
   registerClient,
   editClient,
   getClients,
+  getClient,
 };
