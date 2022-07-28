@@ -1,6 +1,6 @@
 const { Org, Paint, Order } = require("../models");
 
-populate();
+//populate();
 async function populate() {
    await Org.deleteMany({});
 

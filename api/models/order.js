@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const moment = require("moment");
 const paintSchema = require("./paint");
 const clientSchema = require("./client");
 const Schema = mongoose.Schema;
@@ -37,10 +36,5 @@ const Orders = new Schema({
     default: Date.now,
   },
 });
-
-function getRandomInt(max) {
-  if (max > 0) return Math.floor(Math.random() * max);
-  else return Math.floor(Math.random() * max) + 1;
-}
 
 module.exports = mongoose.model("orders", Orders);

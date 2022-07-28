@@ -1,6 +1,4 @@
 const { Router } = require("express");
-//const { builtinModules } = require("module");
-//const { modelNames } = require("mongoose");
 
 const clientRoutes = require("../routes/client");
 const orderRoutes = require("../routes/order");
