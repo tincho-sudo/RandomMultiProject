@@ -70,12 +70,6 @@ const getOrders = async (_, res) => {
 };
 
 //pasar id de la orden por params
-const getOrder = async (req, res) => {
-  const order = await Order.findById(req.params._id);
-  return res.status(200).json(order);
-};
-
-//pasar id de la orden por params
 const deleteOrder = async (req, res) => {
   const order = await Order.findById(req.params._id);
   const deletedOrder = await order.delete();
@@ -136,10 +130,19 @@ const canceledOrders = async (req, res) => {
   return res.status(200).json(orders);
 };
 
+//pasar id por params
+const getOrder = async (req, res) => {
+  const id = req.params.id;
+  const order = await Order.findById(id);
+ // if (!req.params._id ) return res.status(500).json({ err });
+  return res.status(200).json({ order });
+};
+
 module.exports = {
   registerOrder,
   editOrder,
   getOrders,
+  getOrder,
   deleteOrder,
   pendingOrders,
   billedOrders,

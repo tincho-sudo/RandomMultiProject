@@ -14,7 +14,10 @@ async function populate() {
         if(paintList[i])
          paintQuant+=paintList[i];
     }
+
+    
   let salesQuant = await Order.count({});
+
 
   let totalRev = 0;
   let orderList = [];
