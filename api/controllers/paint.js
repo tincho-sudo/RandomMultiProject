@@ -6,7 +6,14 @@ const registerPaint = async (req, res) => {
   const { name, color, price, stock, sku, nextShipping } = req.body;
 
   try {
-    const newPaint = new Paint({ name, color, price, stock, sku, nextShipping });
+    const newPaint = new Paint({
+      name,
+      color,
+      price,
+      stock,
+      sku,
+      nextShipping,
+    });
     await newPaint.save();
     res.status(200).json({ newPaint });
   } catch (err) {

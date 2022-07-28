@@ -14,9 +14,9 @@ const registerOrder = async (req, res) => {
       dateOfDelivery: dateOfDelivery,
     });
     await newOrder.save();
-   return res.status(200).json({ newOrder });
+    return res.status(200).json({ newOrder });
   } catch (err) {
-   return res.status(500).json({ err });
+    return res.status(500).json({ err });
   }
 };
 
@@ -54,7 +54,7 @@ async function populate() {
 
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editOrder = async (req, res) => {
-  const { orderId , statusZ, toPay, dateOfDelivery} = req.body;
+  const { orderId, statusZ, toPay, dateOfDelivery } = req.body;
   const order = await Order.findById(orderId);
   if (statusZ) order.statusZ = statusZ;
   if (toPay) order.toPay = toPay;
@@ -86,13 +86,16 @@ const deleteOrder = async (req, res) => {
 const pendingOrders = async (req, res) => {
   let orders;
   try {
-    if(req){
-      orders = await Order.find({clientId: { $eq: req.params._id }, statusZ: { $eq: 1 } });
-    }else{
+    if (req) {
+      orders = await Order.find({
+        clientId: { $eq: req.params._id },
+        statusZ: { $eq: 1 },
+      });
+    } else {
       orders = await Order.find({ statusZ: { $eq: 1 } });
     }
   } catch (err) {
-      return res.status(500).json({ err });
+    return res.status(500).json({ err });
   }
   return res.status(200).json(orders);
 };
@@ -101,13 +104,16 @@ const pendingOrders = async (req, res) => {
 const billedOrders = async (req, res) => {
   let orders;
   try {
-    if(req){
-      orders = await Order.find({clientId: { $eq: req.params._id }, statusZ: { $eq: 2 } });
-    }else{
+    if (req) {
+      orders = await Order.find({
+        clientId: { $eq: req.params._id },
+        statusZ: { $eq: 2 },
+      });
+    } else {
       orders = await Order.find({ statusZ: { $eq: 2 } });
     }
   } catch (err) {
-      return res.status(500).json({ err });
+    return res.status(500).json({ err });
   }
   return res.status(200).json(orders);
 };
@@ -116,13 +122,16 @@ const billedOrders = async (req, res) => {
 const canceledOrders = async (req, res) => {
   let orders;
   try {
-    if(req){
-      orders = await Order.find({clientId: { $eq: req.params._id }, statusZ: { $eq: 3 } });
-    }else{
+    if (req) {
+      orders = await Order.find({
+        clientId: { $eq: req.params._id },
+        statusZ: { $eq: 3 },
+      });
+    } else {
       orders = await Order.find({ statusZ: { $eq: 3 } });
     }
   } catch (err) {
-      return res.status(500).json({ err });
+    return res.status(500).json({ err });
   }
   return res.status(200).json(orders);
 };
