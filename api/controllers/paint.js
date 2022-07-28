@@ -6,7 +6,14 @@ const registerPaint = async (req, res) => {
   const { name, color, price, stock, sku, nextShipping } = req.body;
 
   try {
-    const newPaint = new Paint({ name, color, price, stock, sku, nextShipping });
+    const newPaint = new Paint({
+      name,
+      color,
+      price,
+      stock,
+      sku,
+      nextShipping,
+    });
     await newPaint.save();
     res.status(200).json({ newPaint });
   } catch (err) {
@@ -62,8 +69,16 @@ const getPaints = async (req, res) => {
   return res.status(200).json(paints);
 };
 
+//pasar id por params
+const getPaint = async (req, res) => {
+  const paint = await Paint.findById(req.params.id);
+  if (!req.params.id ) return res.status(500).json({ err });
+  return res.status(200).json({ paint });
+};
+
 module.exports = {
   registerPaint,
   editPaint,
   getPaints,
+  getPaint,
 };

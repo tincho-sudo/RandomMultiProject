@@ -4,7 +4,6 @@ const { validatorRegisterClient } = require("../validations/client");
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerClient = async (req, res) => {
   const { email, password, name, surname, dir } = req.body;
-  const {id} = req.params;
 
   let emailTrim = email.trim().toLowerCase();
 
@@ -50,7 +49,7 @@ const editClient = async (req, res) => {
   if (dir) client.dir = dir;
   if (!name && !surname && !dir) return res.status(500).json({ err });
   const editedclient = await client.save();
-  res.status(200).json({ editedclient });
+  return res.status(200).json({ editedclient });
 };
 
 const getClients = async (_, res) => {
@@ -58,8 +57,16 @@ const getClients = async (_, res) => {
   return res.status(200).json(clients);
 };
 
+//pasar id por params
+const getClient = async (req, res) => {
+  const client = await Client.findById(req.params.id);
+  if (!req.params.id ) return res.status(500).json({ err });
+  return res.status(200).json({ client });
+};
+
 module.exports = {
   registerClient,
   editClient,
   getClients,
+  getClient,
 };

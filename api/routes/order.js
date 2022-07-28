@@ -5,6 +5,7 @@ const {
   registerOrder,
   editOrder,
   getOrders,
+  getOrder,
   deleteOrder,
   pendingOrders,
   billedOrders,
@@ -14,10 +15,14 @@ const {
 router.post("/neworder", registerOrder);
 router.put("/modifyorder", editOrder);
 router.get("/orders", getOrders);
-router.delete("/deleteorder", deleteOrder);
+router.get("/order/:id", getOrder);
+router.delete("/deleteorder/:id", deleteOrder);
 
 router.get("/pendingorders", pendingOrders);
+router.get("/pendingorders/:id", pendingOrders);
 router.get("/billedorders", billedOrders);
+router.get("/billedorders/:id", billedOrders);
 router.get("/canceledorders", canceledOrders);
+router.get("/canceledorders/:id", canceledOrders);
 
 module.exports = router;
