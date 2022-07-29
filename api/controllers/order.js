@@ -22,7 +22,7 @@ const registerOrder = async (req, res) => {
 
 // agrega 10 datos a la tabla
 try {
- // populate();
+  //populate();
 } catch (error) {
   console.log(error);
 }

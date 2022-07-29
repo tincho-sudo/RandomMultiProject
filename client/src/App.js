@@ -2,17 +2,23 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Landing from "./pages/Landing";
+import Clientes from "./pages/Clientes";
+import Pedidos from "./pages/Pedidos";
+import Productos from "./pages/Productos";
+import Organizacion from "./pages/Organizacion";
+
 
 function App() {
   return (
     <div className='App'>
       <Sidebar/>
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Landing/>}/>
-        <Route/>
-        <Route/>
-        <Route/>
-      </Routes> */}
+        <Route path="/clientes" element={<Clientes/>}/>
+        <Route path="/productos" element={<Productos/>}/>
+        <Route path="/pedidos" element={<Pedidos/>}/>
+        <Route path="/organizacion" element={<Organizacion/>}/>
+      </Routes>
     </div>
   );
 }
