@@ -61,12 +61,14 @@ const getClients = async (_, res) => {
 //pasar email por params
 const getClient = async (req, res) => {
 
+  const {email} = req.query;
+
   try {
     //console.log(req.params.email);
     //console.log(req.params.email.split('@')[0]);
     //email = (await Client.find({"email": {'$regex' : req.params.email, '$options' : 'i'}})).map(client=>client.email);
     //console.log(email);
-    const client = await Client.find({"email": new RegExp(req.params.email.split('@')[0], 'i')});
+    const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
     return res.status(200).json({ client });
   } catch (error) {
   //  console.log(req.params.email);

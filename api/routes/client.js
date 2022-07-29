@@ -11,6 +11,6 @@ const {
 router.post("/newclient", registerClient);
 router.put("/modifyclient", editClient);
 router.get("/clients", getClients);
-router.get("/client/:email", getClient);
+router.get("/client", getClient);
 
 module.exports = router;
