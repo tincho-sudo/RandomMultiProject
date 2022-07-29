@@ -42,15 +42,14 @@ async function populate() {
 
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editClient = async (req, res) => {
-  const { name, surname, email, dir } = req.body;
-  const {email} = req.query;
+  const { name, surname, dir } = req.body;
+  const { email } = req.query;
+  
   try {
     const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
-    return res.status(200).json({ client });
-  } catch (error) {
-   return res.status(500).json({error})
+  } catch (err) {
+   return res.status(500).json({ err })
   } 
-  
   
   if (email) client.email = email;
   if (name) client.name = name;
@@ -58,6 +57,7 @@ const editClient = async (req, res) => {
   if (dir) client.dir = dir;
   if (!name && !surname && !dir && !email) return res.status(500).json({ err });
   const editedclient = await client.save();
+  
   return res.status(200).json({ editedclient });
 };
 
