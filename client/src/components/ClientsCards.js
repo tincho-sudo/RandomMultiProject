@@ -4,12 +4,14 @@ import Client from "./Client";
 import FilteredClient from "./FilteredClient";
 import style from "./styles/ClientsCards.module.css";
 import Paginado from "./Paginado";
+import AddClient from './AddClient';
 
 function ClientsCards() {
 
     //CLIENTES
     const [clients,setClients] = useState([]);
     const [filteredClient, setFilteredClient] = useState([]);
+    const [flag,setFlag] = useState(true);
 
     //PAGINADO
     const clientsInPage = 8;
@@ -39,7 +41,7 @@ function ClientsCards() {
             console.log(res.data);
         })
         .catch(err=>console.log(err));
-    },[])
+    },[flag])
 
   return (
     <div className={style.clientsContainer}>
@@ -91,6 +93,9 @@ function ClientsCards() {
             </div>
             <div className={style.addClient}>
                 Agregar cliente
+                <AddClient
+                setFlag={setFlag}
+                />
             </div>
         </div>
     </div>
