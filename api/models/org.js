@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Org = new Schema({
-  name: {type: String, require: true, unique: true,},
+  name: { type: String, require: true, unique: true },
   employees: Number,
   dir: String,
   phone: String,

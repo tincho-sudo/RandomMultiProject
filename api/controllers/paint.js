@@ -72,7 +72,7 @@ const getPaints = async (req, res) => {
 //pasar id por params
 const getPaint = async (req, res) => {
   const paint = await Paint.findById(req.params.id);
-  if (!req.params.id ) return res.status(500).json({ err });
+  if (!req.params.id) return res.status(500).json({ err });
   return res.status(200).json({ paint });
 };
 

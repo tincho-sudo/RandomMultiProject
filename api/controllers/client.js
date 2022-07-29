@@ -42,22 +42,24 @@ async function populate() {
 
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editClient = async (req, res) => {
-  const { name, surname, dir } = req.body;
+  const { name, surname, dir, email2 } = req.body;
   const { email } = req.query;
-  
+
   try {
-    const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
+    const client = await Client.find({
+      email: new RegExp(email.split("@")[0], "i"),
+    });
   } catch (err) {
-   return res.status(500).json({ err })
-  } 
-  
-  if (email) client.email = email;
+    return res.status(500).json({ err });
+  }
+
+  if (email2) client.email = email2;
   if (name) client.name = name;
   if (surname) client.surname = surname;
   if (dir) client.dir = dir;
   if (!name && !surname && !dir && !email) return res.status(500).json({ err });
   const editedclient = await client.save();
-  
+
   return res.status(200).json({ editedclient });
 };
 
@@ -66,25 +68,18 @@ const getClients = async (_, res) => {
   return res.status(200).json(clients);
 };
 
-//pasar email por params
+//pasar email por query
 const getClient = async (req, res) => {
-
-  const {email} = req.query;
+  const { email } = req.query;
 
   try {
-    //console.log(req.params.email);
-    //console.log(req.params.email.split('@')[0]);
-    //email = (await Client.find({"email": {'$regex' : req.params.email, '$options' : 'i'}})).map(client=>client.email);
-    //console.log(email);
-    const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
+    const client = await Client.find({
+      email: new RegExp(email.split("@")[0], "i"),
+    });
     return res.status(200).json({ client });
   } catch (error) {
-  //  console.log(req.params.email);
-    //console.log(email[0].split('@')[0]);
-   return res.status(500).json({error})
-  } 
-  
- 
+    return res.status(500).json({ error });
+  }
 };
 
 module.exports = {
