@@ -134,7 +134,7 @@ const canceledOrders = async (req, res) => {
 const getOrder = async (req, res) => {
   const id = req.params.id;
   const order = await Order.findById(id);
- // if (!req.params._id ) return res.status(500).json({ err });
+  // if (!req.params._id ) return res.status(500).json({ err });
   return res.status(200).json({ order });
 };
 
