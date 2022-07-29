@@ -43,7 +43,15 @@ async function populate() {
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editClient = async (req, res) => {
   const { name, surname, email, dir } = req.body;
-  const client = await Client.findById(req.body.email);
+  const {email} = req.query;
+  try {
+    const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
+    return res.status(200).json({ client });
+  } catch (error) {
+   return res.status(500).json({error})
+  } 
+  
+  
   if (email) client.email = email;
   if (name) client.name = name;
   if (surname) client.surname = surname;
