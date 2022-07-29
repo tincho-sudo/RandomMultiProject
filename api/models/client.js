@@ -10,6 +10,7 @@ const Client = new Schema({
   password: String,
   name: String,
   surname: String,
+  dir: String,
   createdAt: {
     type: Date,
     default: Date.now,

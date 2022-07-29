@@ -45,7 +45,7 @@ async function populate() {
   const newOrder = new Order({
     client: await Client.findById({ _id: clientList[0]._id }),
     paint: await Paint.findById({ _id: paintList[0]._id }),
-    toPay: await toPayVar,
+    toPay: toPayVar,
     dateOfDelivery: "aaa",
     statusZ: Math.floor(Math.random() * 2),
   });
