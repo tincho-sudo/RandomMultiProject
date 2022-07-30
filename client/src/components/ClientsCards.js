@@ -56,6 +56,7 @@ function ClientsCards() {
                             surname={user.surname}
                             createdAt={user.createdAt}
                             id={user._id}
+                            setFlag={setFlag}
                         />
                     )
                 }) : <p>Error</p>

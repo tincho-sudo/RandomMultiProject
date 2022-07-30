@@ -16,6 +16,7 @@ function AddClient({setFlag}) {
 
     const handleSubmit = (e)=>{
         e.preventDefault()
+        console.log(input)
         axios.post(`http://localhost:4200/newclient`, input)
         .then(res=>{
             console.log("Usuario agregado")
@@ -47,7 +48,7 @@ function AddClient({setFlag}) {
                 <input type="text" name="dir" onChange={(e)=>handleChange(e)}/>
             </div>
             <div>
-                <button type="submit" onCanPlay={(e)=>handleSubmit(e)}>Agregar</button>
+                <button type="submit" onClick={(e)=>handleSubmit(e)}>Agregar</button>
             </div>
             
 
