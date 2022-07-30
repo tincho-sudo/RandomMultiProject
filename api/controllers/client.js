@@ -47,19 +47,14 @@ const editClient = async (req, res) => {
   
   try {
     const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
-
-  
-  if (email2) client.email = email2;
-  if (name) client.name = name;
-  if (surname) client.surname = surname;
-  if (dir) client.dir = dir;
-  if (!name && !surname && !dir && !email) 
-  return res.status(500).json({ err });
-  const editedclient = await client.save();  } catch (err) {
+   if (name) client[0].name = name;
+   //const editedclient = await client.save(); 
+  return res.status(200).json({ client });
+   } catch (err) {
     return res.status(500).json({ err })
    } 
   
-  return res.status(200).json({ editedclient });
+  
 };
 
 const getClients = async (_, res) => {
