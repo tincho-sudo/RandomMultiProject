@@ -7,15 +7,15 @@ function Client({email, name, surname, createdAt, id}) {
     <div className={style.container}>
       <div className={style.text}>
         <p>Nombre: {name}</p>
-        <button><Popper edit={"name"} email={email}/></button>
+        <Popper edit={"name"} email={email}/>
       </div>
       <div className={style.text}>
         <p>Apellido: {surname}</p>
-        <button><Popper edit={"surname"} email={email}/></button>
+        <Popper edit={"surname"} email={email}/>
       </div>
       <div className={style.text}>
         <p>Email: {email}</p>
-        <button><Popper edit={"email"} email={email}/></button>
+        <Popper edit={"email"} email={email}/>
       </div>
       <div className={style.text}>
         <p>Registrado: {createdAt}</p>
