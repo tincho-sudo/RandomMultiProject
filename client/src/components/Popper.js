@@ -16,19 +16,19 @@ export default function SimplePopper({edit, email}) {
   const handleSubmit = (event)=>{
     event.preventDefault();
     if(edit=="name"){
-        axios.put("http://localhost:4200/modifyclient",{email: email,name: input})
+        axios.put(`http://localhost:4200/modifyclient?email=${email}`,{name: input})
         .then(res=>{
             console.log("Editado con exito")
         })
     }
     if(edit=="surname"){
-        axios.put("http://localhost:4200/modifyclient",{email: email,surname: input})
+        axios.put(`http://localhost:4200/modifyclient?email=${email}`,{surname: input})
         .then(res=>{
             console.log("Editado con exito")
         })
     }
     if(edit=="email"){
-        axios.put("http://localhost:4200/modifyclient",{email: input})
+        axios.put(`http://localhost:4200/modifyclient?email=${email}`,{email2: input})
         .then(res=>{
             console.log("Editado con exito")
         })
