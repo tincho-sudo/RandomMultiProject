@@ -75,7 +75,7 @@ const getPaint = async (req, res) => {
   const {name} = req.query;
 
   try {
-    const paint = await Paint.find({"email": new RegExp(name.split('@')[0], 'i')});
+    const paint = await Paint.find({"name": new RegExp(name, 'i')});
     return res.status(200).json({ paint });
   } catch (error) {
    return res.status(500).json({error})

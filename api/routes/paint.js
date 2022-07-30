@@ -11,6 +11,6 @@ const {
 router.post("/newpaint", registerPaint);
 router.put("/modifypaint", editPaint);
 router.get("/paints", getPaints);
-router.get("/paint/:id", getPaint);
+router.get("/paint", getPaint);
 
 module.exports = router;

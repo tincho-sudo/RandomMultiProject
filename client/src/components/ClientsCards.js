@@ -89,7 +89,7 @@ function ClientsCards() {
                             createdAt={user.createdAt}
                         />
                     )
-                }) : <p>No enconrado</p>
+                }) : <p>No encontrado</p>
             }
             </div>
             <div className={style.addClient}>
