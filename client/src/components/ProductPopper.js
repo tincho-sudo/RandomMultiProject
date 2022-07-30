@@ -4,7 +4,7 @@ import Popper from '@mui/material/Popper';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
 
-export default function SimplePopper({edit, email, setFlag}) {
+export default function ProductPopper({edit, idprod, setFlag}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [input, setInput] = React.useState("");
@@ -21,26 +21,41 @@ export default function SimplePopper({edit, email, setFlag}) {
   const handleSubmit = (event)=>{
     event.preventDefault();
     if(edit=="name"){
-        axios.put(`http://localhost:4200/modifyclient?email=${email}`,{name: input})
+        axios.put(`http://localhost:4200/modifypaint?id=${idprod}`,{name: input})
         .then(res=>{
             setFlag(prevFlag=>!prevFlag)
             console.log("Editado con exito")
         })
     }
-    if(edit=="surname"){
-        axios.put(`http://localhost:4200/modifyclient?email=${email}`,{surname: input})
+    if(edit=="color"){
+        axios.put(`http://localhost:4200/modifypaint?id=${idprod}`,{color: input})
         .then(res=>{
-          setFlag(prevFlag=>!prevFlag)
+            setFlag(prevFlag=>!prevFlag)
             console.log("Editado con exito")
         })
     }
-    if(edit=="email"){
-        axios.put(`http://localhost:4200/modifyclient?email=${email}`,{email2: input})
+    if(edit=="price"){
+        axios.put(`http://localhost:4200/modifypaint?id=${idprod}`,{price: input})
         .then(res=>{
-          setFlag(prevFlag=>!prevFlag)
+            setFlag(prevFlag=>!prevFlag)
             console.log("Editado con exito")
         })
     }
+    if(edit=="stock"){
+        axios.put(`http://localhost:4200/modifypaint?id=${idprod}`,{stock: input})
+        .then(res=>{
+            setFlag(prevFlag=>!prevFlag)
+            console.log("Editado con exito")
+        })
+    }
+    if(edit=="sku"){
+        axios.put(`http://localhost:4200/modifypaint?id=${idprod}`,{sku: input})
+        .then(res=>{
+            setFlag(prevFlag=>!prevFlag)
+            console.log("Editado con exito")
+        })
+    }
+    
   }
 
   const open = Boolean(anchorEl);

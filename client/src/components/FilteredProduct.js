@@ -1,8 +1,15 @@
-import React from 'react'
+import React from 'react';
+import style from "./styles/FilteredProduct.module.css";
 
-const FilteredProduct = () => {
+const FilteredProduct = ({name,color,id,price,stock,sku}) => {
   return (
-    <div>FilteredProduct</div>
+    <div className={style.container}>
+      <p>Nombre: {name}</p>
+      <p>Color: {color}</p>
+      <p>Precio: {price}</p>
+      <p>Stock: {stock}</p>
+      <p>SKU: {sku}</p>
+    </div>
   )
 }
 
