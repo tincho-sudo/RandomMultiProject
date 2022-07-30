@@ -51,7 +51,7 @@ async function getRandomInt(max) {
 //todos los parametros se pasan por body (postman, put x-www-form)
 const editPaint = async (req, res) => {
   const { name, color, price, stock, sku } = req.body;
-  const paint = await Paint.findById(req.body._id);
+  const paint = await Paint.findById(req.query.id);
   if (name) paint.name = name;
   if (color) paint.color = color;
   if (price) paint.price = price;
@@ -71,9 +71,15 @@ const getPaints = async (req, res) => {
 
 //pasar id por params
 const getPaint = async (req, res) => {
-  const paint = await Paint.findById(req.params.id);
-  if (!req.params.id) return res.status(500).json({ err });
-  return res.status(200).json({ paint });
+
+  const {name} = req.query;
+
+  try {
+    const paint = await Paint.find({"email": new RegExp(name.split('@')[0], 'i')});
+    return res.status(200).json({ paint });
+  } catch (error) {
+   return res.status(500).json({error})
+  } 
 };
 
 module.exports = {
