@@ -44,22 +44,21 @@ async function populate() {
 const editClient = async (req, res) => {
   const { name, surname, dir, email2 } = req.body;
   const { email } = req.query;
-
+  
   try {
-    const client = await Client.find({
-      email: new RegExp(email.split("@")[0], "i"),
-    });
-  } catch (err) {
-    return res.status(500).json({ err });
-  }
+    const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
 
+  
   if (email2) client.email = email2;
   if (name) client.name = name;
   if (surname) client.surname = surname;
   if (dir) client.dir = dir;
-  if (!name && !surname && !dir && !email) return res.status(500).json({ err });
-  const editedclient = await client.save();
-
+  if (!name && !surname && !dir && !email) 
+  return res.status(500).json({ err });
+  const editedclient = await client.save();  } catch (err) {
+    return res.status(500).json({ err })
+   } 
+  
   return res.status(200).json({ editedclient });
 };
 
@@ -70,16 +69,18 @@ const getClients = async (_, res) => {
 
 //pasar email por query
 const getClient = async (req, res) => {
-  const { email } = req.query;
+
+  const {email} = req.query;
 
   try {
-    const client = await Client.find({
-      email: new RegExp(email.split("@")[0], "i"),
-    });
+
+    const client = await Client.find({"email": new RegExp(email.split('@')[0], 'i')});
     return res.status(200).json({ client });
   } catch (error) {
-    return res.status(500).json({ error });
-  }
+   return res.status(500).json({error})
+  } 
+  
+ 
 };
 
 module.exports = {
