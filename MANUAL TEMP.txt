@@ -1,0 +1,51 @@
+IMPORTANTE: LA API SE ENCUENTRA TESTEADA EN WINDOWS 10 O.S.
+
+MANUAL DE USUARIO
+
+1. PREREQUISITOS: 
+
+	a) Instalar el driver de MongoDB, el driver de base de datos utilizado en este proyecto.
+
+	b) Ejecutar el servidor abriendo una terminal (cmd) situado dentro de la carpeta "api", o bien, dirigirse a la misma 	utilizando el comando "cd" dentro de la misma terminal.
+
+	c) Ejecutar el comando "npm run start" para abrir el servidor e inicializar tanto la api como la base de datos
+
+2. C.R.U.D / Endpoints
+
+	Se cuenta con distintos endpoints que permiten manejarse con los datos que queramos administrar, los mismos son: 
+
+	CLIENT
+
+		POST - "/newclient"
+		GET - "/clients"
+		GET - "/client/:email"
+		PUT - "/modifyclient"
+
+	PAINT (refiere realmente a Articulos)
+
+		POST - "/newpaint"
+		GET - "/paints"
+		GET - "/paint/:name"
+		PUT - "/modifypaint/:id"
+
+	ORDER (pedidos)
+
+		POST - "/neworder"
+		PUT - "/modifyorder/:id"
+		GET - "/orders"
+		GET - "/order/:id"
+		DELETE - "/order/:id"
+
+	BILLING
+
+		GET - "/billedorders"
+		GET - "/billedorders/:id"
+		GET - "/canceledorders"
+		GET - "/canceledorders/:id"
+		GET - "/pendingorders"
+		GET - "/pendingorders/:id"
+
+	ORG
+
+		GET - "/totalrevenue"
+		GET - "/stocklist"
