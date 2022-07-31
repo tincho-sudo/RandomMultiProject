@@ -9,25 +9,49 @@
 }
 
 .clientsContainer{
-    background-color: red;
     width: 40vw;
-    height: 80vh;
+    height: 64vh;
 }
 
 .productsContainer{
-    background-color: blue;
     width: 50vw;
-    height: 80vh;
+    height: 64vh;
 }
 
 .createContainer{
-    margin-top: 5vh;
+    margin-top: 3vh;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    gap: 5vw;
 }
 
 .createContainer button{
     width: 15vw;
     height: 10vh;
     font-size: 20px;
+}
+
+.clientSelected{
+    background-color: aquamarine;
+    width: 200px;
+    margin-left: 30px;
+    padding: 3px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px 5px #000000;
+}
+
+.productSelecteditem{
+    display: flex;
+    gap: 10px;
+}
+
+.totalPrice{
+    background-color: greenyellow;
+    height: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
