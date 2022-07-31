@@ -13,13 +13,16 @@ const CreateOrder = () => {
     const [clientSelected, setClientSelected] = useState({});
     const [productsSelected, setProductsSelected] = useState([]);
 
+    const totalPrice = productsSelected.reduce((prev,curr)=>prev+(curr.price * curr.stock),0)
+    console.log(totalPrice)
+
     //PAGINADOCLIENTS
-    const clientsInPage = 8;
+    const clientsInPage = 7;
     const [currentPage, setCurrentPage] = useState(1);
     const max = clients.length / clientsInPage;
 
     //PAGINADOPRODUCTS
-    const productsInPage = 8;
+    const productsInPage = 7;
     const [currentPagep, setCurrentPagep] = useState(1);
     const maxp = products.length / productsInPage;
 
@@ -36,6 +39,11 @@ const CreateOrder = () => {
         })
         .catch(err=>console.log(err));
     },[])
+
+    const handleSubmit = ()=> {
+        let product = {client: clientSelected, paint: productsSelected, statusZ: 1, toPay: totalPrice, dateOfDelivery: Date.now()}
+        axios.post("http://localhost:4200/neworder", product)
+    }
 
   return (
     <div className={style.maxContainer}>
@@ -83,6 +91,7 @@ const CreateOrder = () => {
                             current={"home"}
                             setProductsSelected={setProductsSelected}
                             products={products}
+                            productsSelected={productsSelected}
                         />
                     )
                 }) : <p>No encontrado</p>
@@ -95,7 +104,30 @@ const CreateOrder = () => {
             </div>
         </div>
         <div className={style.createContainer}>
-            <button className="btn btn-primary">Crear orden</button>
+            <div className={style.clientSelected}>
+                <p>Cliente</p>
+                <p>{clientSelected.name}</p>
+                <p>{clientSelected.email}</p>
+            </div>
+            <div className={style.clientSelected}>
+                <p>Productos</p>
+                {
+                    productsSelected?.map(e=>{
+                        return (
+                            <div className={style.productSelecteditem}>
+                                <p>Nombre: {e.name}</p>
+                                <p>Cantidad: {e.stock}</p>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            <div className={style.totalPrice}>
+                <p>Precio total: {totalPrice}</p>
+            </div>
+            <div>
+                <button className="btn btn-primary" onClick={handleSubmit}>Crear orden</button>
+            </div>
         </div>
     </div>
   )

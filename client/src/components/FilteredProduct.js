@@ -3,17 +3,29 @@ import style from "./styles/FilteredProduct.module.css";
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const FilteredProduct = ({name,color,id,price,stock,sku,current,setProductsSelected,products}) => {
+const FilteredProduct = ({name,color,id,price,stock,sku,nextShipping,current,setProductsSelected,products,productsSelected}) => {
 
 
   if(current="home"){
 
     function addCart(){
-      console.log("Hola")
+      if(!productsSelected.filter(e=> e.sku === sku).length > 0){
+        setProductsSelected(prevProductsSelected=> [...prevProductsSelected, {name,color,price,stock: 1,sku,nextShipping}]);
+      }else{
+        const suma = productsSelected.find(e=> e.sku == sku).stock+=1;
+        setProductsSelected(prevProductsSelected=> [...prevProductsSelected])
+      }
     }
 
     function deleteCart(){
-      console.log("Hola2")
+      if(!productsSelected.filter(e=> e.sku === sku).length > 0){
+        console.log("No se encuentra este elemento en la orden") 
+      }else if(productsSelected.filter(e=> e.sku === sku)[0].stock == 1){
+        setProductsSelected(prevProductsSelected=> prevProductsSelected.filter(e=> e.sku != sku))
+      }else{
+        productsSelected.find(e=> e.sku == sku).stock-=1;
+        setProductsSelected(prevProductsSelected=> [...prevProductsSelected])
+      }
     }
 
     const stockStyle = {
