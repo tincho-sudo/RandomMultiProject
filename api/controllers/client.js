@@ -23,7 +23,7 @@ const registerClient = async (req, res) => {
 };
 
 // agrega 10 datos a la tabla
-//populate();
+populate();
 async function populate() {
   await Client.deleteMany({});
 

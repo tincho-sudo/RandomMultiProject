@@ -1,0 +1,33 @@
+.maxContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.twoContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.clientsContainer{
+    background-color: red;
+    width: 40vw;
+    height: 80vh;
+}
+
+.productsContainer{
+    background-color: blue;
+    width: 50vw;
+    height: 80vh;
+}
+
+.createContainer{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.createContainer button{
+    width: 15vw;
+    height: 10vh;
+    font-size: 20px;
+}

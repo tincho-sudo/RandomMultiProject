@@ -7,23 +7,23 @@ function Product({name,color,id,price,stock,sku,nextShipping,setFlag}) {
     <div className={style.container}>
       <div className={style.text}>
         <p>Nombre: {name}</p>
-        <ProductPopper edit={"name"} id={id} setFlag={setFlag}/>
+        <ProductPopper edit={"name"} idprod={id} setFlag={setFlag}/>
       </div>
       <div className={style.text}>
         <p>Color: {color}</p>
-        <ProductPopper edit={"surname"} id={id} setFlag={setFlag}/>
+        <ProductPopper edit={"color"} idprod={id} setFlag={setFlag}/>
       </div>
       <div className={style.text}>
         <p>Price: {price}</p>
-        <ProductPopper edit={"email"} id={id} setFlag={setFlag}/>
+        <ProductPopper edit={"price"} idprod={id} setFlag={setFlag}/>
       </div>
       <div className={style.text}>
         <p>Stock: {stock}</p>
-        <ProductPopper edit={"email"} id={id} setFlag={setFlag}/>
+        <ProductPopper edit={"stock"} idprod={id} setFlag={setFlag}/>
       </div>
       <div className={style.text}>
         <p>Sku: {sku}</p>
-        <ProductPopper edit={"email"} id={id} setFlag={setFlag}/>
+        <ProductPopper edit={"sku"} idprod={id} setFlag={setFlag}/>
       </div>
     </div>
   )

@@ -4,7 +4,7 @@ import Popper from '@mui/material/Popper';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
 
-export default function SimplePopper({edit, email, setFlag}) {
+export default function ClientPopper({edit, email, setFlag}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [input, setInput] = React.useState("");

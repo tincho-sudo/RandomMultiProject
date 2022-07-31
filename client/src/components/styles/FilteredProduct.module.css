@@ -13,7 +13,7 @@
     padding: 5px;
 }
 
-.containerHome{
+.containerSelected{
     width: 500px;
     height: 50px;
     display: flex;
@@ -26,5 +26,8 @@
     border-radius: 3px;
     background-color: blanchedalmond;
     padding: 5px;
+}
+
+.icon{
     cursor: pointer;
 }
