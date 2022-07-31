@@ -8,12 +8,14 @@ const Orders = new Schema({
     type: clientSchema.schema,
     ref: "clients",
     required: true,
+    unique:false,
   },
   paint: [
     {
       type: paintSchema.schema,
       ref: "paints",
       required: true,
+      unique:false,
     },
   ],
   statusZ: {

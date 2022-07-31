@@ -15,15 +15,20 @@ const registerClient = async (req, res) => {
       surname,
       dir,
     });
-    await newClient.save();
-    res.status(200).json({ newClient });
+    let validateEmail = await Client.find({email: emailTrim});
+    
+    if(validateEmail) throw res.status(500).json({err})
+    else{
+      await newClient.save();
+      res.status(200).json({ newClient });
+    }
   } catch (err) {
     res.status(500).json({ err });
   }
 };
 
 // agrega 10 datos a la tabla
-populate();
+//populate();
 async function populate() {
   await Client.deleteMany({});
 

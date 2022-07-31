@@ -42,14 +42,16 @@ async function populate() {
     toPayVar += paintList[i].price;
   }
   console.log("Pay: " + toPayVar);
-  const newOrder = new Order({
+  for(i=0;i<5;i++){
+  const newOrder = await new Order({
     client: await Client.findById({ _id: clientList[0]._id }),
-    paint: await Paint.findById({ _id: paintList[0]._id }),
+    paint: await Paint.findById({ _id: paintList[i]._id }),
     toPay: toPayVar,
     dateOfDelivery: "aaa",
     statusZ: Math.floor(Math.random() * 2),
   });
   await newOrder.save();
+}
 }
 
 //todos los parametros se pasan por body (postman, put x-www-form)

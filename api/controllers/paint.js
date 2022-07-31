@@ -1,5 +1,4 @@
 const { Paint } = require("../models");
-const moment = require("moment");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerPaint = async (req, res) => {
@@ -41,11 +40,6 @@ async function populate() {
   } catch (error) {
     console.log(error);
   }
-}
-
-async function getRandomInt(max) {
-  if (max > 0) return Math.floor(Math.random() * max);
-  else return Math.floor(Math.random() * max) + 1;
 }
 
 //todos los parametros se pasan por body (postman, put x-www-form)
