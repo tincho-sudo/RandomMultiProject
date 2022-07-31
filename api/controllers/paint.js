@@ -71,15 +71,14 @@ const getPaints = async (req, res) => {
 
 //pasar id por params
 const getPaint = async (req, res) => {
-
-  const {name} = req.query;
+  const { name } = req.query;
 
   try {
-    const paint = await Paint.find({"name": new RegExp(name, 'i')});
+    const paint = await Paint.find({ name: new RegExp(name, "i") });
     return res.status(200).json({ paint });
   } catch (error) {
-   return res.status(500).json({error})
-  } 
+    return res.status(500).json({ error });
+  }
 };
 
 module.exports = {
