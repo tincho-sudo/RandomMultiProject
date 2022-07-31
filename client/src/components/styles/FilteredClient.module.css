@@ -12,3 +12,19 @@
     background-color: blanchedalmond;
     padding: 5px;
 }
+
+.containerHome{
+    width: 500px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    background-color: antiquewhite;
+    border: 0px;
+    box-shadow: 4px 5px 15px 0px rgba(0,0,0,0.44);
+    margin: 3px;
+    border-radius: 3px;
+    background-color: blanchedalmond;
+    padding: 5px;
+    cursor: pointer;
+}

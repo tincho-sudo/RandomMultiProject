@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import CreateOrder from '../components/Home/CreateOrder';
 
 function Landing() {
   return (
-    <div>Landing</div>
+    <div><CreateOrder/></div>
   )
 }
 

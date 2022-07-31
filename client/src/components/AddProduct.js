@@ -37,11 +37,11 @@ const AddProduct = ({setFlag}) => {
             </div>
             <div>
                 <label>Precio</label>
-                <input type="text" name="price" onChange={(e)=>handleChange(e)}/>
+                <input type="number" name="price" onChange={(e)=>handleChange(e)}/>
             </div>
             <div>
                 <label>Stock</label>
-                <input type="text" name="stock" onChange={(e)=>handleChange(e)}/>
+                <input type="number" name="stock" onChange={(e)=>handleChange(e)}/>
             </div>
             <div>
                 <label>SKU</label>
