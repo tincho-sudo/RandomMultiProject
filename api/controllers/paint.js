@@ -35,7 +35,7 @@ async function populate() {
   try {
     await Paint.deleteMany({});
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 2; i++) {
       const newPaint = new Paint({
         name: i + "nombre",
         color: i + "color",
@@ -44,6 +44,7 @@ async function populate() {
         sku: i + "sku",
         nextShipping: "aaa",
       });
+      newPaint.save();
     }
   } catch (error) {
     console.log(error);

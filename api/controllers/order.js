@@ -22,7 +22,7 @@ const registerOrder = async (req, res) => {
 
 // agrega 10 datos a la tabla
 try {
-  //populate();
+ populate();
 } catch (error) {
   console.log(error);
 }
@@ -37,21 +37,19 @@ async function populate() {
   //despues va a haber que recorrer todas las pinturas de la orden,
   //sumar los precios individuales y editarle a la orden la variable toPay que ya tiene en la db
   //opcion B, por front sacan el valor de cada pintura, lo suman en una temporal y lo manda en el req
-  for (i = 0; i < 10; i++) {
-    console.log(paintList[i].price);
+  for (i = 0; i < 2; i++) {
+   // console.log(paintList[i].price);
     toPayVar += paintList[i].price;
+    const newOrder = await new Order({
+      client: await Client.findById({ _id: clientList[i]._id }),
+      paint: await Paint.findById({ _id: paintList[i]._id }),
+      toPay: toPayVar,
+      dateOfDelivery: "aaa",
+      statusZ: Math.floor(Math.random() * 2),
+    });
+    await newOrder.save();
   }
-  console.log("Pay: " + toPayVar);
-  for(i=0;i<10;i++){
-  const newOrder = await new Order({
-    client: await Client.findById({ _id: clientList[i]._id }),
-    paint: await Paint.findById({ _id: paintList[i]._id }),
-    toPay: toPayVar,
-    dateOfDelivery: "aaa",
-    statusZ: Math.floor(Math.random() * 2),
-  });
-  await newOrder.save();
-}
+  //console.log("Pay: " + toPayVar);
 }
 
 //todos los parametros se pasan por body (postman, put x-www-form)
