@@ -7,7 +7,7 @@ import Pedidos from "./pages/Pedidos";
 import Productos from "./pages/Productos";
 import Organizacion from "./pages/Organizacion";
 import DetailedOrder from './components/Detailed/DetailedOrder';
-import DetailedClient from './components/Detailed/DetailedOrder';
+import DetailedClient from './components/Detailed/DetailedClient';
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/pedidos" element={<Pedidos/>}/>
         <Route path="/organizacion" element={<Organizacion/>}/>
         <Route path="/clientes/:email" element={<DetailedClient/>}/>
-        <Route path="/pedidos/:id" element={<DetailedClient/>}/>
+        <Route path="/pedidos/:id" element={<DetailedOrder/>}/>
       </Routes>
     </div>
   );
