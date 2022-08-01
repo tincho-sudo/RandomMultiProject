@@ -22,3 +22,13 @@
     border: none;
     cursor: pointer;
 }
+
+.both{
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+}
+
+.info{
+    margin-top: 5vh;
+}

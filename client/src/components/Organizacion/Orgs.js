@@ -4,27 +4,32 @@ import style from "./styles/Orgs.module.css";
 
 const Orgs = () => {
 
-    const [org,setOrg] = useState({});
+    const [org,setOrg] = useState([]);
 
     useEffect(()=>{
         axios.get("http://localhost:4200/org")
         .then(res=>{
             setOrg(res.data);
-            console.log(res.data)
         })
     },[])
 
   return (
-    <div className={style.container}>
-        <div className={style.letras}>
-            <p className='display-4'>Nombre: {org[0].name}</p>
-            <p>Dirección: {org[0].dir}</p>
-            <p>Teléfono: {org[0].phone}</p>
-            <p>Cantidad de empleados: {org[0].employees}</p>
-            <p>Stock total: {org[0].totalStockQuant}</p>
-            <p>Ventas totales: {org[0].totalSales}</p>
-            <p>Ganancias totales: {org[0].totalRevenue}</p>
-        </div>
+    <div>
+        {
+            org ? org.map(e=>{
+                return(<div key={e.name} className={style.container}>
+                    <div className={style.letras}>
+                        <p className='display-4'>Nombre: {e.name}</p>
+                        <p>Dirección: {e.dir}</p>
+                        <p>Teléfono: {e.phone}</p>
+                        <p>Cantidad de empleados: {e.employees}</p>
+                        <p>Stock total: {e.totalStockQuant}</p>
+                        <p>Ventas totales: {e.totalSales}</p>
+                        <p>Ganancias totales: {`${e.totalRevenue}$`}</p>
+                    </div>
+                </div>)
+            }) : <p>Cargando...</p>
+        }
     </div>
   )
 }

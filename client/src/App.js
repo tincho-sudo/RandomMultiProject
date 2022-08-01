@@ -6,6 +6,8 @@ import Clientes from "./pages/Clientes";
 import Pedidos from "./pages/Pedidos";
 import Productos from "./pages/Productos";
 import Organizacion from "./pages/Organizacion";
+import DetailedOrder from './components/Detailed/DetailedOrder';
+import DetailedClient from './components/Detailed/DetailedOrder';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
         <Route path="/productos" element={<Productos/>}/>
         <Route path="/pedidos" element={<Pedidos/>}/>
         <Route path="/organizacion" element={<Organizacion/>}/>
+        <Route path="/clientes/:email" element={<DetailedClient/>}/>
+        <Route path="/pedidos/:id" element={<DetailedClient/>}/>
       </Routes>
     </div>
   );

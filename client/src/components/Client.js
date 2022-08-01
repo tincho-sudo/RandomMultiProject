@@ -1,6 +1,8 @@
 import React from 'react';
 import style from "./styles/Client.module.css";
 import ClientPopper from "./ClientPopper";
+import InfoIcon from '@mui/icons-material/Info';
+import {Link} from "react-router-dom";
 
 function Client({email, name, surname, createdAt, id, setFlag}) {
   return (
@@ -18,7 +20,12 @@ function Client({email, name, surname, createdAt, id, setFlag}) {
         <ClientPopper edit={"email"} email={email} setFlag={setFlag}/>
       </div>
       <div className={style.text}>
+        <div className={style.both}>
         <p>Registrado: {createdAt}</p>
+          <Link to={`/clientes/${email}`}>
+            <InfoIcon className={style.info}/>
+          </Link>
+        </div>
       </div>
     </div>
   )

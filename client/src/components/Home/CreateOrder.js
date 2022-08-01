@@ -14,7 +14,6 @@ const CreateOrder = () => {
     const [productsSelected, setProductsSelected] = useState([]);
 
     const totalPrice = productsSelected.reduce((prev,curr)=>prev+(curr.price * curr.stock),0)
-    console.log(totalPrice)
 
     //PAGINADOCLIENTS
     const clientsInPage = 7;

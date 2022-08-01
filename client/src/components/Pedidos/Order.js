@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import style from "./styles/Order.module.css";
+import InfoIcon from '@mui/icons-material/Info';
+import {Link} from "react-router-dom";
 
 const Order = ({_id,client,paint,statusZ,toPay,dateOfDelivery,setFlag,orders}) => {
 
@@ -43,6 +45,9 @@ const Order = ({_id,client,paint,statusZ,toPay,dateOfDelivery,setFlag,orders}) =
         <div className={style.botones}>
             <button name='finished' disabled={statusZ > 1} onClick={(e)=>handleStatus(e)}>Finalizado</button>
             <button name="cancelled"  disabled={statusZ > 1} onClick={(e)=>handleStatus(e)}>Cancelado</button>
+            <Link to={`/pedidos/${_id}`}>
+                <InfoIcon/>
+            </Link>
         </div>
     </div>
   )
