@@ -1,4 +1,4 @@
-const { Paint } = require("../models");
+const { Paint, Org } = require("../models");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
 const registerPaint = async (req, res) => {
@@ -13,7 +13,16 @@ const registerPaint = async (req, res) => {
       sku,
       nextShipping,
     });
+
+    try{
+    const stockUp = await Org.findOne({name: "Sherwin Williams"});
+    stockUp.totalStockQuant += newPaint.stock;
+    await stockUp.save();
+    } catch(err){
+
+    }
     await newPaint.save();
+
     res.status(200).json({ newPaint });
   } catch (err) {
     res.status(500).json({ err });
@@ -35,7 +44,6 @@ async function populate() {
         sku: i + "sku",
         nextShipping: "aaa",
       });
-      await newPaint.save();
     }
   } catch (error) {
     console.log(error);
