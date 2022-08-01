@@ -26,6 +26,7 @@ const Orgs = () => {
                         <p>Stock total: {e.totalStockQuant}</p>
                         <p>Ventas totales: {e.totalSales}</p>
                         <p>Ganancias totales: {`${e.totalRevenue}$`}</p>
+                        <p>Ganancia mensual: {`${e.totalRevenue/12}$`}</p>
                     </div>
                 </div>)
             }) : <p>Cargando...</p>
