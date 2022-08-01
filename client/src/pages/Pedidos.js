@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Orders from '../components/Pedidos/Orders';
 
 function Pedidos() {
   return (
-    <div>Pedidos</div>
+    <div><Orders/></div>
   )
 }
 
