@@ -1,4 +1,4 @@
-const { Client } = require("../models");
+const { Client, Order } = require("../models");
 const { validatorRegisterClient } = require("../validations/client");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
@@ -33,7 +33,7 @@ const registerClient = async (req, res) => {
 async function populate() {
   await Client.deleteMany({});
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 2; i++) {
     const newClient = new Client({
       email: i + "a@hotmail.com",
       password: i + "passwd",
@@ -79,7 +79,11 @@ const getClient = async (req, res) => {
     const client = await Client.find({
       email: new RegExp(email.split("@")[0], "i"),
     });
-    return res.status(200).json({ client });
+    const history = await Order.find({
+      "client.email": new RegExp(email.split("@")[0], "i"),
+    });
+
+    return res.status(200).json({ client , history });
   } catch (err) {
     return res.status(500).json({ err : "No se encontró ese cliente"});
   }
