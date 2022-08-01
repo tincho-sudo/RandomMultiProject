@@ -15,9 +15,10 @@ const registerClient = async (req, res) => {
       surname,
       dir,
     });
-    let validateEmail = await Client.find({email: emailTrim});
+    let validateEmail = await Client.findOne({email: emailTrim});
 
-    if(validateEmail) throw res.status(500).json({err:"Email duplicado"})
+    if(validateEmail!=null) 
+    return res.status(500).json({err:"Email duplicado"})
     else{
       await newClient.save();
       res.status(200).json({ newClient });
