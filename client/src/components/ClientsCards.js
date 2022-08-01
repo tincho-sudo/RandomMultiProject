@@ -25,6 +25,7 @@ function ClientsCards() {
         e.preventDefault();
         setInput(e.target.value);
         if(input != null){
+        //Pide al back por query un cliente por email
         axios.get(`http://localhost:4200/client?email=${e.target.value}`)
         .then(res=>{
             setFilteredClient(res.data);

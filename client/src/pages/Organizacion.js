@@ -1,8 +1,9 @@
 import React from 'react'
+import Orgs from '../components/Organizacion/Orgs'
 
 function Organizacion() {
   return (
-    <div>Organizacion</div>
+    <div><Orgs/></div>
   )
 }
 
