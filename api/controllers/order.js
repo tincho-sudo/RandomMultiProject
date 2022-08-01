@@ -1,4 +1,4 @@
-const { Order, Client, Paint } = require("../models");
+const { Order, Client, Paint, Org } = require("../models");
 const moment = require("moment");
 
 //todos los parametros se pasan por body (postman, post x-www-form)
@@ -58,9 +58,18 @@ async function populate() {
 const editOrder = async (req, res) => {
   const { orderId, statusZ, toPay, dateOfDelivery } = req.body;
   const order = await Order.findById(orderId);
+
+  if((statusZ != order.statusZ) && (statusZ==2)){
+    const salesUp = await Org.findOne({name: "Sherwin Williams"});
+    salesUp.totalRevenue += order.toPay;
+    salesUp.totalSales += 1;
+    salesUp.save();
+  }
+
   if (statusZ) order.statusZ = statusZ;
   if (toPay) order.toPay = toPay;
   if (dateOfDelivery) order.dateOfDelivery = dateOfDelivery;
+
   await order.save();
   return res.status(200).json(order);
 };
