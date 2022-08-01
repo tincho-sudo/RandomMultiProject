@@ -16,14 +16,14 @@ const registerClient = async (req, res) => {
       dir,
     });
     let validateEmail = await Client.find({email: emailTrim});
-    
-    if(validateEmail) throw res.status(500).json({err})
+
+    if(validateEmail) throw res.status(500).json({err:"Email duplicado"})
     else{
       await newClient.save();
       res.status(200).json({ newClient });
     }
   } catch (err) {
-    res.status(500).json({ err });
+    res.status(500).json({ err});
   }
 };
 
@@ -61,7 +61,7 @@ const editClient = async (req, res) => {
     const editedclient = await client.save();
     return res.status(200).json({ editedclient });
   } catch (err) {
-    return res.status(500).json({ err });
+    return res.status(500).json({ err : "Error modificando el cliente"});
   }
 };
 
@@ -79,8 +79,8 @@ const getClient = async (req, res) => {
       email: new RegExp(email.split("@")[0], "i"),
     });
     return res.status(200).json({ client });
-  } catch (error) {
-    return res.status(500).json({ error });
+  } catch (err) {
+    return res.status(500).json({ err : "No se encontró ese cliente"});
   }
 };
 

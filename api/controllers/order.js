@@ -42,9 +42,9 @@ async function populate() {
     toPayVar += paintList[i].price;
   }
   console.log("Pay: " + toPayVar);
-  for(i=0;i<5;i++){
+  for(i=0;i<10;i++){
   const newOrder = await new Order({
-    client: await Client.findById({ _id: clientList[0]._id }),
+    client: await Client.findById({ _id: clientList[i]._id }),
     paint: await Paint.findById({ _id: paintList[i]._id }),
     toPay: toPayVar,
     dateOfDelivery: "aaa",
